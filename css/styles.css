@@ -646,3 +646,166 @@ footer {
         font-size: 0.9rem;
     }
 }
+
+/* ---------------------------------------------------------------------------
+   Added for v1.0 landing refresh: additional feature icons, pricing, FAQ
+   --------------------------------------------------------------------------- */
+
+/* Extra feature-icon variants for the 6-card grid. Same sizing + gradient
+   background as the base .feature-icon; only the emoji differs. */
+.feature-icon.ai::before { content: "✨"; font-size: 2rem; }
+.feature-icon.hands-free::before { content: "👋"; font-size: 2rem; }
+.feature-icon.speed::before { content: "⚡"; font-size: 2rem; }
+.feature-icon.ratings::before { content: "⭐"; font-size: 2rem; }
+
+/* Pricing */
+#pricing {
+    background-color: var(--neutral-100);
+}
+
+#pricing h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.pricing-lead {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    color: var(--neutral-700);
+    font-size: 1.125rem;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    background-color: white;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    border: 2px solid transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.pricing-card-featured {
+    border-color: var(--primary);
+}
+
+.pricing-card h3 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.5rem;
+}
+
+.pricing-amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    color: var(--neutral-900);
+}
+
+.pricing-amount span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--neutral-600);
+}
+
+.pricing-note {
+    color: var(--neutral-600);
+    font-size: 0.95rem;
+}
+
+.pricing-badge {
+    position: absolute;
+    top: -12px;
+    right: var(--spacing-lg);
+    background: var(--primary-gradient);
+    color: white;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* FAQ — uses native <details>/<summary> for progressive disclosure (no JS) */
+#faq {
+    background-color: white;
+}
+
+#faq h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background-color: var(--neutral-100);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.3s ease;
+}
+
+.faq-item[open] {
+    box-shadow: var(--shadow-md);
+}
+
+.faq-item summary {
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: var(--spacing-sm) 0;
+    color: var(--neutral-900);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+    content: "+";
+    font-size: 1.5rem;
+    color: var(--primary);
+    font-weight: 300;
+    margin-left: var(--spacing-md);
+    transition: transform 0.2s ease;
+}
+
+.faq-item[open] summary::after {
+    content: "−";
+}
+
+.faq-item p {
+    margin-top: var(--spacing-sm);
+    color: var(--neutral-700);
+    line-height: 1.6;
+    padding-bottom: var(--spacing-sm);
+}
+
+.faq-item p a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.faq-item p a:hover {
+    text-decoration: underline;
+}
