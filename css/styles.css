@@ -201,11 +201,25 @@ section {
     object-fit: contain;
 }
 
+.logo-text-block {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
 .logo-text {
     font-size: 1.5rem;
     color: white;
     margin-bottom: 0;
     font-weight: 700;
+}
+
+.logo-tagline {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-style: italic;
+    letter-spacing: 0.5px;
+    margin: 2px 0 0 0;
 }
 
 /* Hero Section */
