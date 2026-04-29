@@ -68,13 +68,11 @@ html {
     scroll-behavior: smooth;
 }
 
-/* General Header Styles (for pages like privacy-policy.html) */
+/* Site header — same logo block on every page (index + subpages) */
 header {
-    /* display: flex; and align-items: center; removed */
     background-color: var(--neutral-100);
-    padding-top: var(--spacing-lg);    /* Align with logo-hero top */
-    padding-bottom: var(--spacing-md); /* Keep bottom padding as reduced */
-    /* border-bottom: 1px solid var(--neutral-300); */ /* Divider removed */
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
 }
 
 header .container {
@@ -93,20 +91,18 @@ header .logo {
 }
 
 header .logo img {
-    height: 50px; /* Changed from 40px to match .logo-circle height */
+    height: 50px;
     width: auto;
     margin-right: var(--spacing-sm);
 }
 
 header .logo h1 {
-    font-size: 1.5rem; /* Changed from 1.75rem to match .logo-text font-size */
-    font-weight: 700; /* Added to match .logo-text font-weight */
+    font-size: 1.5rem;
+    font-weight: 700;
     color: var(--neutral-900);
-    margin-top: 0; /* Ensure no top margin */
-    margin-bottom: 0; /* Remove default h1 margin */
+    margin-top: 0;
+    margin-bottom: 0;
 }
-
-/* Removed header nav ul, header nav ul li a, and header nav ul li a:hover, .active rules */
 
 body {
     font-family: var(--font-family);
@@ -173,55 +169,6 @@ section {
     padding: var(--spacing-xxl) 0;
 }
 
-/* Logo Hero Styles */
-.logo-hero {
-    position: absolute;
-    top: var(--spacing-lg);
-    left: var(--spacing-lg);
-    z-index: 10;
-    display: flex;
-    align-items: center;
-}
-
-.logo-circle {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: var(--primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    margin-right: var(--spacing-sm);
-}
-
-.logo-circle img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.logo-text-block {
-    display: flex;
-    flex-direction: column;
-    line-height: 1;
-}
-
-.logo-text {
-    font-size: 1.5rem;
-    color: white;
-    margin-bottom: 0;
-    font-weight: 700;
-}
-
-.logo-tagline {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.85);
-    font-style: italic;
-    letter-spacing: 0.5px;
-    margin: 2px 0 0 0;
-}
-
 /* Hero Section */
 #hero {
     background: var(--primary-gradient);
@@ -263,8 +210,6 @@ section {
     font-size: 1.25rem;
     margin-bottom: var(--spacing-xl);
 }
-
-/* .hero-image rules are no longer needed as the element was removed */
 
 .app-buttons {
     display: inline-flex;
@@ -346,6 +291,25 @@ section {
 .feature-card h3 {
     color: var(--primary);
     margin-bottom: var(--spacing-md);
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--spacing-sm) 0 0;
+}
+
+.feature-list li {
+    padding: 2px 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.feature-list li::before {
+    content: "•";
+    color: var(--primary);
+    font-weight: 700;
+    margin-right: 0.5em;
 }
 
 /* Screenshots Section */
