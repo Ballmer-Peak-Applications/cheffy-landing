@@ -23,7 +23,20 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Theme bootstrap: resolve stored preference > system preference > light,
+         and apply BEFORE first paint to avoid a flash of the wrong theme. -->
+    <script>
+        (function () {
+            var stored = null;
+            try { stored = localStorage.getItem('cheffy-theme'); } catch (e) {}
+            var theme = stored || (window.matchMedia
+                && window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
 </head>
 <body>
     <!-- Header (matches subpages for consistent logo spot + size) -->
@@ -35,6 +48,10 @@
                     <h1>Cheffy</h1>
                 </a>
             </div>
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+                <span class="icon-sun" aria-hidden="true">☀</span>
+                <span class="icon-moon" aria-hidden="true">☾</span>
+            </button>
         </div>
     </header>
 

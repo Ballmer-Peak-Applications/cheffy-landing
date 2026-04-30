@@ -1,11 +1,10 @@
 /* Base Styles */
 :root {
-    /* Brand Colors */
-    --primary: #4E7AF0;
-    --secondary: #6C63FF;
-    --tertiary: #00C2CB;
-    --accent: #FF7A5A;
-    
+    /* Brand Colors — matched to app theme (cheffy-fe/lib/theme/app_theme.dart, lightTheme) */
+    --primary: #3B82F6;
+    --secondary: #6988BA;
+    --tertiary: #093D8D;
+
     /* Neutral Colors */
     --neutral-100: #F8F9FA;
     --neutral-200: #F1F3F5;
@@ -16,19 +15,21 @@
     --neutral-700: #495057;
     --neutral-800: #343A40;
     --neutral-900: #212529;
-    
+
     /* Semantic Colors */
     --success: #4CAF50;
     --warning: #FFC107;
     --error: #FF5252;
     --info: #2196F3;
-    
-    /* Gradients */
-    --primary-gradient: linear-gradient(135deg, var(--primary), var(--secondary));
-    --accent-gradient: linear-gradient(135deg, var(--tertiary), var(--accent));
-    
+
+    /* Gradients — pure blue family (primary → tertiary), matching app aesthetic.
+       --accent-gradient is the reverse direction so the download CTA reads
+       differently from the hero without leaving the brand palette. */
+    --primary-gradient: linear-gradient(135deg, #3B82F6 0%, #093D8D 100%);
+    --accent-gradient: linear-gradient(135deg, #093D8D 0%, #3B82F6 100%);
+
     /* Typography */
-    --font-family: 'Poppins', sans-serif;
+    --font-family: 'Nunito', sans-serif;
     --h1-size: 3rem;
     --h2-size: 2.5rem;
     --h3-size: 1.75rem;
@@ -787,3 +788,110 @@ footer {
 .faq-item p a:hover {
     text-decoration: underline;
 }
+
+/* ---------------------------------------------------------------------------
+   Dark mode
+   ---------------------------------------------------------------------------
+   Activated by `<html data-theme="dark">`, set by the inline <head> script in
+   index.html before first paint, resolving from localStorage > system
+   preference > "light".
+
+   Dark mode is intentionally scoped to the main landing page only. All other
+   pages (delete-account, support, privacy-policy, terms-of-service) are
+   utility/legal surfaces and stay light — simpler mental model, and avoids
+   any cross-page inconsistency with the Termly-embedded snippets which are
+   styled for light backgrounds.
+*/
+:root[data-theme="dark"] {
+    /* Brand: switch to app's dark-mode primary (cheffy-fe darkTheme). */
+    --primary: #60A5FA;
+    --secondary: #898FAF;
+    --tertiary: #D0D4FC;
+
+    /* Neutrals: invert the scale so existing var usages keep their semantic
+       meaning (--neutral-100 = page bg, --neutral-900 = primary text)
+       without rewriting every reference. */
+    --neutral-100: #0F172A;  /* slate-900 — page bg */
+    --neutral-200: #1E293B;  /* slate-800 — alt section bg */
+    --neutral-300: #334155;  /* slate-700 — borders */
+    --neutral-400: #475569;
+    --neutral-500: #64748B;
+    --neutral-600: #94A3B8;
+    --neutral-700: #CBD5E1;
+    --neutral-800: #E2E8F0;
+    --neutral-900: #F1F5F9;  /* near-white — primary text */
+
+    /* Gradients use slightly cooler, deeper blues so they don't glare on a
+       dark surface. */
+    --primary-gradient: linear-gradient(135deg, #1E40AF 0%, #60A5FA 100%);
+    --accent-gradient: linear-gradient(135deg, #60A5FA 0%, #1E40AF 100%);
+}
+
+/* Sections that hardcoded `white` in light mode → match dark page tone. */
+:root[data-theme="dark"] #features,
+:root[data-theme="dark"] #how-it-works,
+:root[data-theme="dark"] #faq {
+    background-color: #1E293B;
+}
+
+/* Cards need to lift visually above their containing section. In light mode
+   a card that matches body bg works because shadow + bright section creates
+   the lift. In dark mode we explicitly bump cards down one step. */
+:root[data-theme="dark"] .feature-card,
+:root[data-theme="dark"] .pricing-card,
+:root[data-theme="dark"] .faq-item {
+    background-color: #0F172A;
+}
+
+/* Footer: in light mode this is --neutral-900 (a dark slab on a light
+   page). With the inverted scale that would flip to near-white on white —
+   wrong. Pin it darker than the page for visual separation. */
+:root[data-theme="dark"] footer {
+    background-color: #020617;
+    color: #94A3B8;
+}
+
+:root[data-theme="dark"] .simple-footer a {
+    color: #CBD5E1;
+}
+
+:root[data-theme="dark"] .simple-footer a:hover {
+    color: #F1F5F9;
+}
+
+/* ---------------------------------------------------------------------------
+   Theme toggle button (header)
+   --------------------------------------------------------------------------- */
+.theme-toggle {
+    background: transparent;
+    border: 1px solid var(--neutral-400);
+    color: var(--neutral-700);
+    border-radius: var(--radius-full);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    line-height: 1;
+    padding: 0;
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.theme-toggle:active {
+    transform: scale(0.92);
+}
+
+/* Show the icon for the theme you'd switch *to*, not the one you're in.
+   Default (light): show moon (click to go dark). Dark: show sun. */
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: inline; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: inline; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+

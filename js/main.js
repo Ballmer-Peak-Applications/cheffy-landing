@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Theme toggle. The initial data-theme attribute is set by an inline
+    // <head> script (FOUC prevention); this just handles user clicks and
+    // persists the override.
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            try { localStorage.setItem('cheffy-theme', next); } catch (e) {}
+        });
+    }
+
     // Screenshot slider functionality (3 images per slide)
     const slides = document.querySelectorAll('.screenshot-slide');
     const navContainer = document.querySelector('.screenshot-nav');
